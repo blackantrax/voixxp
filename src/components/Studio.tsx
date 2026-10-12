@@ -58,8 +58,12 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
         if (audioRef.current) { audioRef.current.src = take.url; audioRef.current.play().catch(() => {}); }
       });
     } catch (e) {
+      const msg = (e as Error).message;
+      console.error("VoixXP synthèse", v.id, msg);
       setError(
-        `La génération a échoué : ${(e as Error).message}. Essayez Chrome ou Edge récents, ou une voix plus légère.`,
+        /fetch|network/i.test(msg)
+          ? "Le modèle n'a pas pu être téléchargé. Vérifiez votre connexion, puis réessayez."
+          : `La voix ${v.name} n'a pas pu lire ce texte. Essayez une autre voix ; notre équipe est avertie.`,
       );
     } finally {
       setBusy(false);
@@ -68,8 +72,8 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
-      <section className="card p-5 sm:p-6">
+    <div className="grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
+      <section className="card min-w-0 p-5 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h1 className="text-xl font-bold">Texte vers voix</h1>
           <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
@@ -88,9 +92,9 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
 
         <div className="mt-3 flex flex-wrap items-center justify-between gap-4 text-sm text-zinc-400">
           <span>{text.length.toLocaleString("fr-CA")} / {MAX_CHARS.toLocaleString("fr-CA")} caractères · aucun crédit consommé</span>
-          <label className={`flex items-center gap-3 ${voice.engine !== "kokoro" ? "opacity-40" : ""}`} title={voice.engine !== "kokoro" ? "Vitesse réglable sur les voix anglaises HD" : undefined}>
+          <label className="flex items-center gap-3">
             Vitesse
-            <input type="range" min={0.7} max={1.4} step={0.05} value={speed} disabled={voice.engine !== "kokoro"} onChange={(e) => setSpeed(Number(e.target.value))} className="accent-brand-500" />
+            <input type="range" min={0.7} max={1.4} step={0.05} value={speed} onChange={(e) => setSpeed(Number(e.target.value))} className="accent-brand-500" />
             <span className="w-10 tabular-nums">{speed.toFixed(2)}×</span>
           </label>
         </div>
@@ -100,7 +104,7 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Wand2 className="h-4 w-4" />}
             {busy ? "Génération…" : `Générer avec ${voice.name}`}
           </button>
-          <audio ref={audioRef} controls className="h-10 min-w-0 flex-1" />
+          <audio ref={audioRef} controls className="h-10 w-full min-w-0 sm:w-auto sm:flex-1" />
         </div>
 
         {progress && (
@@ -115,7 +119,7 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
             <p className="mt-2 text-xs text-zinc-500">Premier usage : le modèle (25 à 90 Mo) est téléchargé une seule fois, puis mis en cache.</p>
           </div>
         )}
-        {error && <p className="mt-4 rounded-xl bg-red-500/10 p-3 text-sm text-red-300">{error}</p>}
+        {error && <p className="mt-4 break-words rounded-xl bg-red-500/10 p-3 text-sm text-red-300">{error}</p>}
 
         <div className="mt-8">
           <h2 className="mb-3 text-sm font-semibold text-zinc-300">Historique de la session</h2>
@@ -149,7 +153,7 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
         </div>
       </section>
 
-      <aside className="card p-5">
+      <aside className="card min-w-0 p-5">
         <h2 className="font-semibold">Bibliothèque de voix</h2>
         <div className="mt-3 flex flex-wrap gap-2">
           {(Object.keys(LANGS) as Voice["lang"][]).map((l) => (

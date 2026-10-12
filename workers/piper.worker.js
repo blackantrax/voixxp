@@ -19,9 +19,12 @@ function session(voiceId) {
 }
 
 self.onmessage = async ({ data }) => {
-  const { id, text, voice } = data;
+  const { id, text, voice, speed } = data;
   try {
-    const s = await session(voice);
+    const [model, speaker] = voice.split(":");
+    const s = await session(model);
+    globalThis.__piperSpeaker = Number(speaker ?? 0);
+    globalThis.__piperLength = 1 / (speed || 1);
     self.postMessage({ type: "progress", label: "Synthese", ratio: 0.5 });
     const blob = await s.predict(text);
     const header = new DataView(await blob.slice(0, 44).arrayBuffer());

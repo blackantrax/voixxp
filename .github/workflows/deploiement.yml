@@ -37,6 +37,9 @@ jobs:
           npm run lint
           npm run build
 
+      - name: Auditer la compatibilite des voix Piper
+        run: node scripts/audit-voices.mjs --candidats
+
       # Copie hors du depot git : sinon Vercel bloque le build (auteur non verifiable sur un depot prive).
       - name: Preparer le dossier a publier
         run: |
