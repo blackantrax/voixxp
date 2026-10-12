@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Check, Clapperboard, Globe2, Infinity as InfinityIcon, Lock, Mic2, Podcast, Megaphone, Zap, X } from "lucide-react";
 import { LANGS, VOICES } from "@/lib/voices";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { PAID_PLANS, dollars, type PaidPlan } from "@/lib/plans";
 
 const PLANS = [
   {
@@ -143,7 +144,15 @@ export default function Home() {
               {p.featured && <span className="mb-3 self-start rounded-full bg-brand-500/20 px-3 py-1 text-xs font-semibold text-brand-300">Le plus populaire</span>}
               <h3 className="text-xl font-bold">{p.name}</h3>
               <p className="mt-1 text-sm text-zinc-400">{p.tagline}</p>
-              <p className="mt-5 text-4xl font-extrabold">{p.price}<span className="text-base font-normal text-zinc-500">{p.id === "gratuit" ? "" : " /mois"}</span></p>
+              {p.id === "gratuit" ? (
+                <p className="mt-5 text-4xl font-extrabold">{p.price}</p>
+              ) : (
+                <p className="mt-5 text-4xl font-extrabold">
+                  {dollars(PAID_PLANS[p.id as PaidPlan].founder)}
+                  <span className="text-base font-normal text-zinc-500"> /mois</span>
+                  <span className="ml-2 text-base font-normal text-zinc-500 line-through">{dollars(PAID_PLANS[p.id as PaidPlan].regular)}</span>
+                </p>
+              )}
               <ul className="mt-6 flex-1 space-y-3 text-sm">
                 {p.features.map((f) => (
                   <li key={f} className="flex gap-2 text-zinc-300"><Check className="h-4 w-4 shrink-0 text-emerald-400" />{f}</li>
@@ -154,8 +163,10 @@ export default function Home() {
                   <Link href="/studio" className="btn-ghost w-full">{p.cta}</Link>
                 ) : (
                   <>
-                    <p className="mb-2 text-xs text-zinc-500">Lancement prochain — 50 % de rabais à vie pour les 100 premiers.</p>
-                    <WaitlistForm plan={p.id} compact />
+                    <p className="mb-2 text-xs text-zinc-500">Prix fondateur garanti à vie pour les 100 premiers membres. Le clonage ouvre en accès anticipé, membres en priorité. Résiliable en tout temps.</p>
+                    <a href={PAID_PLANS[p.id as PaidPlan].link} className={p.featured ? "btn-primary w-full" : "btn-ghost w-full"}>
+                      Devenir membre fondateur
+                    </a>
                   </>
                 )}
               </div>
