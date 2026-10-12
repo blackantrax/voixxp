@@ -1,0 +1,79 @@
+name: Deploiement VoixXP
+
+# Publie VoixXP sur Vercel (projet « voixxp ») a chaque push sur cette branche.
+# Reutilise le secret de depot VERCEL_TOKEN. N'utilise volontairement PAS
+# VERCEL_PROJECT_ID / VERCEL_ORG_ID, qui designent le projet du cabinet.
+
+on:
+  push:
+    branches: [produit/voixxp]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploiement-voixxp
+  cancel-in-progress: false
+
+env:
+  PROJET_VERCEL: voixxp
+  EQUIPE_VERCEL: blackantraxs-projects
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verifier le code (types, lint, build)
+        run: |
+          npm ci
+          npm run typecheck
+          npm run lint
+          npm run build
+
+      # Copie hors du depot git : sinon Vercel bloque le build (auteur non verifiable sur un depot prive).
+      - name: Preparer le dossier a publier
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/voixxp" && mkdir -p "$RUNNER_TEMP/voixxp"
+          tar --exclude=./.git --exclude=./.github --exclude=./node_modules --exclude=./.next --exclude=./public/workers -cf - . | tar -xf - -C "$RUNNER_TEMP/voixxp"
+
+      - name: Lier, ouvrir au public et deployer
+        id: deployer
+        working-directory: ${{ runner.temp }}/voixxp
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set -euo pipefail
+          npm install --global vercel@latest
+          vercel project add "$PROJET_VERCEL" --scope "$EQUIPE_VERCEL" --token "$VERCEL_TOKEN" || echo "Projet deja existant."
+          vercel link --yes --project "$PROJET_VERCEL" --scope "$EQUIPE_VERCEL" --token "$VERCEL_TOKEN"
+          projet=$(node -p "require('./.vercel/project.json').projectId")
+          equipe=$(node -p "require('./.vercel/project.json').orgId")
+          # Site public (page de vente) : on leve l'authentification Vercel par defaut.
+          code=$(curl -sS -o /tmp/p.json -w '%{http_code}' -X PATCH "https://api.vercel.com/v9/projects/$projet?teamId=$equipe" \
+            -H "Authorization: Bearer $VERCEL_TOKEN" -H "Content-Type: application/json" \
+            -d '{"ssoProtection":null,"passwordProtection":null,"framework":"nextjs"}')
+          [ "$code" = "200" ] || { echo "::error::Mise a jour du projet refusee (HTTP $code)"; cat /tmp/p.json; exit 1; }
+          url=$(vercel deploy --prod --yes --scope "$EQUIPE_VERCEL" --token "$VERCEL_TOKEN")
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Deploiement : $url"
+
+      - name: Verifier le site en ligne
+        run: |
+          set -euo pipefail
+          URL="https://$PROJET_VERCEL.vercel.app"
+          curl -sSf --retry 5 --retry-delay 3 --retry-all-errors -o /tmp/accueil.html "$URL"
+          grep -q "VoixXP" /tmp/accueil.html || { echo "::error::Accueil inattendu"; exit 1; }
+          curl -sSf -o /dev/null "$URL/studio"
+          curl -sSf -o /dev/null "$URL/workers/piper.js"
+          curl -sSf -o /dev/null "$URL/workers/kokoro.web.js"
+          code=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H 'Content-Type: application/json' -d '{}' "$URL/api/waitlist")
+          [ "$code" = "400" ] || { echo "::error::/api/waitlist -> $code (400 attendu)"; exit 1; }
+          echo "En ligne : $URL"
