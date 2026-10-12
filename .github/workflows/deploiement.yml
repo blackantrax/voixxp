@@ -40,6 +40,15 @@ jobs:
       - name: Auditer la compatibilite des voix Piper
         run: node scripts/audit-voices.mjs --candidats
 
+      # Genere un extrait avec chaque voix dans un vrai navigateur.
+      - name: Tester chaque voix dans Chromium
+        continue-on-error: true
+        run: |
+          npx playwright install --with-deps chromium
+          npx next start -p 3000 &
+          npx wait-on -t 60000 http://localhost:3000
+          node tests/voix.mjs http://localhost:3000
+
       # Copie hors du depot git : sinon Vercel bloque le build (auteur non verifiable sur un depot prive).
       - name: Preparer le dossier a publier
         run: |

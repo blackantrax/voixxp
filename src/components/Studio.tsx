@@ -18,6 +18,7 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [errorDetail, setErrorDetail] = useState<string | null>(null);
   const [takes, setTakes] = useState<Take[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -48,6 +49,7 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
     if (!input.trim() || busy) return;
     setBusy(true);
     setError(null);
+    setErrorDetail(null);
     setProgress({ label: "Préparation du moteur", ratio: 0 });
     const t0 = performance.now();
     try {
@@ -59,6 +61,7 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
       });
     } catch (e) {
       const msg = (e as Error).message;
+      setErrorDetail(`${v.id} — ${msg}`);
       console.error("VoixXP synthèse", v.id, msg);
       setError(
         /fetch|network/i.test(msg)
@@ -119,7 +122,17 @@ export function Studio({ initialVoice }: { initialVoice?: string }) {
             <p className="mt-2 text-xs text-zinc-500">Premier usage : le modèle (25 à 90 Mo) est téléchargé une seule fois, puis mis en cache.</p>
           </div>
         )}
-        {error && <p className="mt-4 break-words rounded-xl bg-red-500/10 p-3 text-sm text-red-300">{error}</p>}
+        {error && (
+          <div className="mt-4 break-words rounded-xl bg-red-500/10 p-3 text-sm text-red-300" data-testid="erreur">
+            <p>{error}</p>
+            {errorDetail && (
+              <details className="mt-2 text-xs text-red-300/70">
+                <summary className="cursor-pointer">Détails techniques</summary>
+                <code data-testid="erreur-detail">{errorDetail}</code>
+              </details>
+            )}
+          </div>
+        )}
 
         <div className="mt-8">
           <h2 className="mb-3 text-sm font-semibold text-zinc-300">Historique de la session</h2>
