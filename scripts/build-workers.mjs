@@ -12,7 +12,11 @@ const piperPatch = {
     b.onLoad({ filter: /piper-tts-web[\\/]dist[\\/]piper-tts-web\.js$/ }, (args) => {
       let code = readFileSync(args.path, "utf8");
       const edits = [
-        ["const speakerId = 0;", "const speakerId = globalThis.__piperSpeaker ?? 0;"],
+        [
+          "const speakerId = 0;",
+          // Locuteur par nom (ex. « pierre ») ou par numero.
+          "const speakerId = ((s, m) => (s != null && m && s in m ? m[s] : Number(s) || 0))(globalThis.__piperSpeaker, __privateGet(this, _modelConfig).speaker_id_map);",
+        ],
         [".inference.length_scale;", ".inference.length_scale * (globalThis.__piperLength ?? 1);"],
       ];
       for (const [from, to] of edits) {

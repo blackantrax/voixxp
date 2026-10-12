@@ -15,7 +15,9 @@ const LANGS = ["fr", "en", "es", "de", "it", "pt", "nl"];
 
 const dist = readFileSync("node_modules/@mintplex-labs/piper-tts-web/dist/piper-tts-web.js", "utf8");
 const paths = Object.fromEntries([...dist.matchAll(/"([a-z]{2}_[A-Z]{2}-[^"]+)": "([^"]+\.onnx)"/g)].map((m) => [m[1], m[2]]));
-const catalog = [...readFileSync("src/lib/voices.ts", "utf8").matchAll(/id: "([^"]+)", engine: "piper"/g)].map((m) => m[1].split(":")[0]);
+const catalog = [...readFileSync("src/lib/voices.ts", "utf8").matchAll(/id: "([^"]+)", engine: "piper"/g)].map((m) => m[1]);
+const speakersOf = Object.fromEntries(catalog.filter((v) => v.includes(":")).map((v) => v.split(":")).reduce((acc, [id, sp]) => [...acc, [id + ":" + sp, sp]], []));
+const models = catalog.map((v) => v.split(":")[0]);
 
 async function config(id) {
   const res = await fetch(`${HF}/${paths[id]}.json`);
@@ -35,22 +37,24 @@ function compatible(cfg, ref) {
 const ref = await config(REFERENCE);
 const ids = process.argv.includes("--candidats")
   ? Object.keys(paths).filter((id) => LANGS.includes(id.slice(0, 2)))
-  : catalog;
+  : [...new Set(models)];
 
 let failures = 0;
 for (const id of ids) {
-  if (!paths[id]) { console.log(`KO  ${id}  (absent de piper-tts-web)`); failures += catalog.includes(id); continue; }
+  if (!paths[id]) { console.log(`KO  ${id}  (absent de piper-tts-web)`); failures += models.includes(id); continue; }
   try {
     const cfg = await config(id);
     const problem = compatible(cfg, ref);
     const speakers = Object.keys(cfg.speaker_id_map ?? {});
     const extra = speakers.length ? `  locuteurs: ${speakers.slice(0, 8).join(", ")}${speakers.length > 8 ? ` (+${speakers.length - 8})` : ""}` : "";
-    const tag = catalog.includes(id) ? "[catalogue]" : "";
-    console.log(`${problem ? "KO" : "OK"}  ${id} ${tag} ${problem ?? ""}${extra}`);
-    if (problem && catalog.includes(id)) failures++;
+    const inCatalog = models.includes(id);
+    const missing = Object.entries(speakersOf).filter(([k]) => k.startsWith(id + ":")).map(([, sp]) => sp).filter((sp) => !(sp in (cfg.speaker_id_map ?? {})));
+    const issue = problem ?? (missing.length ? `locuteur(s) introuvable(s) : ${missing.join(", ")}` : null);
+    console.log(`${issue ? "KO" : "OK"}  ${id} ${inCatalog ? "[catalogue]" : ""} ${issue ?? ""}${extra}`);
+    if (issue && inCatalog) failures++;
   } catch (e) {
     console.log(`KO  ${id}  ${e.message}`);
-    if (catalog.includes(id)) failures++;
+    if (models.includes(id)) failures++;
   }
 }
 if (failures) { console.error(`${failures} voix du catalogue incompatibles.`); process.exit(1); }

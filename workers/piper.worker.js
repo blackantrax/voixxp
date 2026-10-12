@@ -23,7 +23,7 @@ self.onmessage = async ({ data }) => {
   try {
     const [model, speaker] = voice.split(":");
     const s = await session(model);
-    globalThis.__piperSpeaker = Number(speaker ?? 0);
+    globalThis.__piperSpeaker = speaker ?? null;
     globalThis.__piperLength = 1 / (speed || 1);
     self.postMessage({ type: "progress", label: "Synthese", ratio: 0.5 });
     const blob = await s.predict(text);
