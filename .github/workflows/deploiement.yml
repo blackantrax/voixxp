@@ -25,6 +25,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -39,10 +41,15 @@ jobs:
       - name: Auditer la compatibilite des voix Piper
         run: node scripts/audit-voices.mjs --candidats
 
-      # Genere un extrait avec chaque voix dans un vrai navigateur. Bloquant : aucune voix
-      # cassee ne part en ligne.
+      # Genere un extrait avec chaque voix dans un vrai navigateur (~10 min). Bloquant, mais
+      # seulement quand le commit touche aux voix ou aux moteurs (ou lancement manuel).
       - name: Tester chaque voix dans Chromium
         run: |
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] && \
+             ! git diff --name-only HEAD~1 HEAD | grep -qE '^(src/lib/voices\.ts|src/lib/tts\.ts|workers/|scripts/build-workers\.mjs|package(-lock)?\.json|tests/)'; then
+            echo "Aucun changement de voix ou de moteur : test complet saute."
+            exit 0
+          fi
           npx playwright install --with-deps chromium
           npx next start -p 3000 &
           npx wait-on -t 60000 http://localhost:3000
