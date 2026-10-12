@@ -1,18 +1,30 @@
-import { TtsSession } from "@mintplex-labs/piper-tts-web";
+import { TtsSession, remove } from "@mintplex-labs/piper-tts-web";
 
 const sessions = new Map();
 
+function create(voiceId) {
+  // TtsSession garde un singleton interne : on le reinitialise pour changer de voix.
+  TtsSession._instance = null;
+  return TtsSession.create({
+    voiceId,
+    progress: (p) => {
+      if (p.total && !String(p.url).startsWith("tts://"))
+        self.postMessage({ type: "progress", label: "Telechargement de la voix", ratio: p.loaded / p.total });
+    },
+  });
+}
+
 function session(voiceId) {
   if (!sessions.has(voiceId)) {
-    // TtsSession garde un singleton interne : on le reinitialise pour changer de voix.
-    TtsSession._instance = null;
-    const p = TtsSession.create({
-      voiceId,
-      progress: (p) => {
-        if (p.total && !String(p.url).startsWith("tts://"))
-          self.postMessage({ type: "progress", label: "Telechargement de la voix", ratio: p.loaded / p.total });
-      },
-    }).catch((e) => { sessions.delete(voiceId); throw e; });
+    // Un modele mis en cache (OPFS) peut etre tronque si la page a ete quittee pendant
+    // l'enregistrement : l'ouverture echoue alors (« No graph was found »). On efface le
+    // cache de cette voix et on la retelecharge une fois.
+    const p = create(voiceId)
+      .catch(async () => {
+        await remove(voiceId).catch(() => {});
+        return create(voiceId);
+      })
+      .catch((e) => { sessions.delete(voiceId); throw e; });
     sessions.set(voiceId, p);
   }
   return sessions.get(voiceId);

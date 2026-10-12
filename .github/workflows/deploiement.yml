@@ -40,9 +40,9 @@ jobs:
       - name: Auditer la compatibilite des voix Piper
         run: node scripts/audit-voices.mjs --candidats
 
-      # Genere un extrait avec chaque voix dans un vrai navigateur.
+      # Genere un extrait avec chaque voix dans un vrai navigateur. Bloquant : aucune voix
+      # cassee ne part en ligne.
       - name: Tester chaque voix dans Chromium
-        continue-on-error: true
         run: |
           npx playwright install --with-deps chromium
           npx next start -p 3000 &
