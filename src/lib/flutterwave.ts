@@ -5,6 +5,14 @@ import { MOBILE_MONEY, type PaidPlan } from "./plans";
 const base = () => (process.env.FLUTTERWAVE_API_BASE_URL || "https://api.flutterwave.com/v3").replace(/\/$/, "");
 const secret = () => process.env.FLUTTERWAVE_SECRET_KEY;
 
+// Diagnostic sans secret : hote de l'API et type de cle (prefixe avant le premier tiret, ex. FLWSECK_TEST).
+export function diagnostic() {
+  let host = "?";
+  try { host = new URL(base()).host + new URL(base()).pathname; } catch {}
+  const key = secret() ?? "";
+  return `api=${host} cle=${key.split("-")[0] || "absente"} longueur=${key.length}`;
+}
+
 export const flutterwaveEnabled = () => Boolean(secret());
 
 export const webhookHash = () => process.env.FLUTTERWAVE_V3_WEBHOOK_HASH || process.env.FLUTTERWAVE_WEBHOOK_SECRET_HASH;
@@ -38,7 +46,7 @@ export async function createPayment(opts: { plan: PaidPlan; email: string; origi
       meta: { produit: "voixxp", plan: opts.plan },
     }),
   });
-  return { txRef, link: res.body?.data?.link ?? null, error: res.ok ? null : `${res.status} ${res.body?.message ?? ""}` };
+  return { txRef, link: res.body?.data?.link ?? null, error: res.ok ? null : `${res.status} ${res.body?.message ?? ""} | ${diagnostic()}` };
 }
 
 export type VerifiedPayment = { ok: boolean; plan?: PaidPlan; amount?: number; currency?: string; reason?: string };
