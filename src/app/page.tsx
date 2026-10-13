@@ -205,10 +205,14 @@ export default function Home() {
                         <summary className="cursor-pointer text-zinc-300">
                           Payer en Mobile Money · {fcfa(MOBILE_MONEY.plans[p.id as PaidPlan])} / mois
                         </summary>
-                        <form action="/api/flutterwave/checkout" method="post" className="mt-3 flex flex-col gap-2">
+                        <form action="/api/flutterwave/mobile-money" method="post" className="mt-3 flex flex-col gap-2">
                           <input type="hidden" name="plan" value={p.id} />
-                          <input type="email" name="email" required placeholder="vous@exemple.com" className="field" aria-label="Courriel pour le reçu" />
-                          <button className="btn-ghost w-full">Payer avec Orange Money, MTN ou carte</button>
+                          <label className="flex items-center rounded-xl border border-white/10 bg-ink-950 focus-within:ring-2 focus-within:ring-brand-500/40">
+                            <span className="pl-4 pr-2 text-zinc-500">+237</span>
+                            <input type="tel" name="phone" required inputMode="tel" placeholder="6 77 12 34 56" className="w-full bg-transparent py-3 pr-4 text-sm outline-none" aria-label="Numéro Orange Money ou MTN MoMo" />
+                          </label>
+                          <input type="email" name="email" placeholder="Courriel pour le reçu (facultatif)" className="field" aria-label="Courriel pour le reçu" />
+                          <button className="btn-ghost w-full">Payer avec Orange Money ou MTN</button>
                         </form>
                       </details>
                     )}

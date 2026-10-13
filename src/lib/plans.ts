@@ -14,6 +14,7 @@ export const dollars = (cents: number) => `${(cents / 100).toLocaleString("fr-CA
 // Paiement pour 1 mois (pas encore de prelevement recurrent).
 export const MOBILE_MONEY = {
   currency: "XAF",
+  country: "CM",
   plans: { createur: 2000, studio: 6000 } satisfies Record<PaidPlan, number>,
 } as const;
 
