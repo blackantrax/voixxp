@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Check, Clapperboard, Globe2, Infinity as InfinityIcon, Lock, Mic2, Podcast, Megaphone, Zap, X } from "lucide-react";
 import { LANGS, VOICES } from "@/lib/voices";
 import { WaitlistForm } from "@/components/WaitlistForm";
-import { PAID_PLANS, dollars, type PaidPlan } from "@/lib/plans";
+import { MOBILE_MONEY, PAID_PLANS, dollars, fcfa, type PaidPlan } from "@/lib/plans";
+import { flutterwaveEnabled } from "@/lib/flutterwave";
 
 const PLANS = [
   {
@@ -48,6 +49,7 @@ const USES = [
 ];
 
 export default function Home() {
+  const mobileMoney = flutterwaveEnabled();
   const featured = VOICES.filter((v) => v.rating >= 4).slice(0, 8);
   return (
     <>
@@ -198,6 +200,18 @@ export default function Home() {
                     <a href={PAID_PLANS[p.id as PaidPlan].link} className={p.featured ? "btn-primary w-full" : "btn-ghost w-full"}>
                       Devenir membre fondateur
                     </a>
+                    {mobileMoney && (
+                      <details className="mt-3 rounded-xl border border-white/10 p-3 text-sm">
+                        <summary className="cursor-pointer text-zinc-300">
+                          Payer en Mobile Money · {fcfa(MOBILE_MONEY.plans[p.id as PaidPlan])} / mois
+                        </summary>
+                        <form action="/api/flutterwave/checkout" method="post" className="mt-3 flex flex-col gap-2">
+                          <input type="hidden" name="plan" value={p.id} />
+                          <input type="email" name="email" required placeholder="vous@exemple.com" className="field" aria-label="Courriel pour le reçu" />
+                          <button className="btn-ghost w-full">Payer avec Orange Money, MTN ou carte</button>
+                        </form>
+                      </details>
+                    )}
                   </>
                 )}
               </div>

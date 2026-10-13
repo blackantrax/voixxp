@@ -9,3 +9,12 @@ export const PAID_PLANS = {
 export type PaidPlan = keyof typeof PAID_PLANS;
 
 export const dollars = (cents: number) => `${(cents / 100).toLocaleString("fr-CA")} $`;
+
+// Paiement Mobile Money / carte via Flutterwave (Afrique centrale, francs CFA). Montants en XAF.
+// Paiement pour 1 mois (pas encore de prelevement recurrent).
+export const MOBILE_MONEY = {
+  currency: "XAF",
+  plans: { createur: 2000, studio: 6000 } satisfies Record<PaidPlan, number>,
+} as const;
+
+export const fcfa = (amount: number) => `${amount.toLocaleString("fr-FR")} FCFA`;

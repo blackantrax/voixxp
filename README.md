@@ -34,3 +34,17 @@ npm run dev
 
 Avant la mise en marché payante, vérifier la licence de chaque voix Piper (certains jeux de données
 sont non commerciaux) et ne proposer en forfait payant que les voix à licence compatible.
+
+## Paiements Mobile Money (Flutterwave, API v3)
+
+Variables Vercel (Production et Preview), valeurs jamais dans le code :
+
+| Variable | Rôle |
+| --- | --- |
+| `FLUTTERWAVE_SECRET_KEY` | Clé secrète v3 (`FLWSECK_TEST-…` en test). Active l'option Mobile Money sur la page des tarifs. |
+| `FLUTTERWAVE_V3_WEBHOOK_HASH` | « Secret hash » saisi dans Flutterwave > Settings > Webhooks (repli : `FLUTTERWAVE_WEBHOOK_SECRET_HASH`). |
+| `FLUTTERWAVE_API_BASE_URL` | Optionnel, défaut `https://api.flutterwave.com/v3`. |
+
+URL du webhook à déclarer chez Flutterwave : `https://www.voixxp.com/api/flutterwave/webhook`.
+Les prix en XAF sont dans `src/lib/plans.ts` (`MOBILE_MONEY`). Chaque paiement est re-vérifié auprès
+de l'API (statut, référence, montant, devise) au retour sur `/merci` et à la réception du webhook.
