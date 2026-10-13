@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "Studio", description: "Générez des
 
 export default function StudioPage({ searchParams }: { searchParams: { voix?: string } }) {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-4 py-8">
       <Studio initialVoice={searchParams.voix} />
     </div>
   );

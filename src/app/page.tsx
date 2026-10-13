@@ -52,37 +52,68 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.25),transparent_60%)]" />
-        <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-20 text-center sm:pt-28">
-          <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-zinc-300">
-            <Zap className="h-3.5 w-3.5 text-amber-300" /> L&apos;alternative open source à ElevenLabs
-          </p>
-          <h1 className="mx-auto max-w-4xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
-            Des voix off IA dignes d&apos;un studio, <span className="gradient-text">gratuites et sans limite.</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">
-            Collez votre script, choisissez une voix, téléchargez. VoixXP fait tourner des modèles open source
-            directement dans votre navigateur : pas de crédits, pas de compte, et votre texte ne quitte jamais votre appareil.
-          </p>
-          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/studio" className="btn-primary px-8 py-4 text-base"><Mic2 className="h-5 w-5" /> Essayer gratuitement</Link>
-            <Link href="/clonage" className="btn-ghost px-8 py-4 text-base">Cloner ma voix</Link>
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.22),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(236,72,153,0.12),transparent_50%)]" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-16 sm:pt-24 grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <div className="min-w-0 text-center lg:text-left">
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-zinc-300">
+              <Zap className="h-3.5 w-3.5 text-amber-300" /> {VOICES.length} voix en {Object.keys(LANGS).length} langues, prêtes en un clic
+            </p>
+            <h1 className="text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
+              Des voix off IA dignes d&apos;un studio, <span className="gradient-text">gratuites et sans limite.</span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl text-lg text-zinc-400 lg:mx-0">
+              Collez votre script, choisissez une voix, téléchargez. VoixXP génère vos voix off directement dans votre
+              navigateur : pas de crédits, pas de compte, et votre texte ne quitte jamais votre appareil.
+            </p>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+              <Link href="/studio" className="btn-primary px-8 py-4 text-base"><Mic2 className="h-5 w-5" /> Essayer gratuitement</Link>
+              <Link href="/clonage" className="btn-ghost px-8 py-4 text-base">Cloner ma voix</Link>
+            </div>
+            <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-zinc-400 lg:justify-start">
+              {[[InfinityIcon, "Caractères illimités"], [Lock, "100 % privé"], [Globe2, `${Object.keys(LANGS).length} langues`]].map(([Icon, label]) => {
+                const I = Icon as typeof Lock;
+                return (
+                  <span key={label as string} className="flex items-center gap-2">
+                    <I className="h-4 w-4 text-brand-300" /> {label as string}
+                  </span>
+                );
+              })}
+            </div>
           </div>
-          <div className="mx-auto mt-14 grid max-w-3xl grid-cols-3 gap-4 text-sm">
-            {[[InfinityIcon, "Caractères illimités"], [Lock, "100 % privé"], [Globe2, `${Object.keys(LANGS).length} langues`]].map(([Icon, label]) => {
-              const I = Icon as typeof Lock;
-              return (
-                <div key={label as string} className="card flex flex-col items-center gap-2 p-4">
-                  <I className="h-5 w-5 text-brand-300" />
-                  <span className="text-zinc-300">{label as string}</span>
-                </div>
-              );
-            })}
-          </div>
+
+          <Link href="/studio" aria-label="Ouvrir le studio" className="card group relative block min-w-0 p-5 shadow-2xl shadow-brand-600/10 transition hover:border-brand-400/60 sm:p-6">
+            <div className="flex items-center justify-between text-xs text-zinc-500">
+              <span className="font-semibold text-zinc-300">Studio</span>
+              <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-emerald-300"><Lock className="h-3 w-3" /> local</span>
+            </div>
+            <p className="mt-4 rounded-xl border border-white/5 bg-ink-950 p-4 text-left text-sm leading-relaxed text-zinc-300">
+              « Salut tout le monde ! Aujourd&apos;hui, je vous montre comment j&apos;ai doublé mes vues en trente jours… »
+            </p>
+            <div className="mt-5 flex items-center gap-4 rounded-xl bg-white/5 p-3">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-glow-500 text-white">
+                <Mic2 className="h-5 w-5" />
+              </span>
+              <span className="wave flex h-10 min-w-0 flex-1 items-center gap-[3px] overflow-hidden" aria-hidden>
+                {Array.from({ length: 40 }, (_, i) => (
+                  <span key={i} className="w-1 rounded-full bg-gradient-to-t from-brand-500 to-glow-400" style={{ height: `${25 + ((i * 37) % 70)}%`, animationDelay: `${(i % 8) * 0.1}s` }} />
+                ))}
+              </span>
+              <span className="text-xs tabular-nums text-zinc-400">0:07</span>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-2 text-left text-sm sm:grid-cols-3">
+              {featured.slice(0, 6).map((v, i) => (
+                <span key={v.id} className={`flex items-center gap-2 rounded-lg border px-3 py-2 ${i === 0 ? "border-brand-400 bg-brand-500/10" : "border-white/5 bg-ink-950"}`}>
+                  <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-[10px] font-bold ${v.gender === "F" ? "bg-glow-500/20 text-glow-400" : "bg-brand-500/20 text-brand-300"}`}>{v.name[0]}</span>
+                  <span className="truncate text-zinc-300">{v.name}</span>
+                </span>
+              ))}
+            </div>
+            <span className="mt-5 flex items-center justify-center gap-2 text-sm font-semibold text-brand-300 group-hover:text-white">Essayer maintenant →</span>
+          </Link>
         </div>
       </section>
 
-      <section id="voix" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16">
+      <section id="voix" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16">
         <h2 className="text-3xl font-bold">Une voix pour chaque contenu</h2>
         <p className="mt-2 text-zinc-400">Cliquez sur une voix pour l&apos;essayer dans le studio.</p>
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -98,7 +129,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16">
+      <section className="mx-auto max-w-7xl px-4 py-16">
         <h2 className="text-3xl font-bold">Pensé pour les créateurs de contenu</h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {USES.map(({ icon: Icon, title, text }) => (
@@ -111,7 +142,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-4 py-16">
+      <section className="mx-auto max-w-5xl px-4 py-16">
         <h2 className="text-center text-3xl font-bold">VoixXP ou ElevenLabs ?</h2>
         <div className="card mt-8 overflow-x-auto">
           <table className="w-full min-w-[520px] text-left text-sm">
@@ -135,7 +166,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="tarifs" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16">
+      <section id="tarifs" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16">
         <h2 className="text-center text-3xl font-bold">Des tarifs simples, en dollars canadiens</h2>
         <p className="mt-2 text-center text-zinc-400">Commencez gratuitement. Passez à Créateur quand vous voulez votre propre voix.</p>
         <div className="mt-10 grid gap-5 lg:grid-cols-3">

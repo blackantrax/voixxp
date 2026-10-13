@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-white/5 bg-ink-950/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" aria-label="Accueil VoixXP"><Logo /></Link>
         <nav className="flex items-center gap-1 text-sm text-zinc-300 sm:gap-4">
           <Link href="/#voix" className="hidden px-2 hover:text-white sm:block">Voix</Link>
