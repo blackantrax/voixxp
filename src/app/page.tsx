@@ -211,7 +211,7 @@ export default function Home() {
                             <span className="pl-4 pr-2 text-zinc-500">+237</span>
                             <input type="tel" name="phone" required inputMode="tel" placeholder="6 77 12 34 56" className="w-full bg-transparent py-3 pr-4 text-sm outline-none" aria-label="Numéro Orange Money ou MTN MoMo" />
                           </label>
-                          <input type="email" name="email" placeholder="Courriel pour le reçu (facultatif)" className="field" aria-label="Courriel pour le reçu" />
+                          <input type="email" name="email" placeholder="Courriel (pour retrouver votre forfait)" className="field" aria-label="Courriel pour le reçu" />
                           <button className="btn-ghost w-full">Payer avec Orange Money ou MTN</button>
                         </form>
                       </details>

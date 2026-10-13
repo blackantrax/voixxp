@@ -32,9 +32,9 @@ export function PaymentWaiter({ reference }: { reference: string }) {
         <PartyPopper className="mx-auto h-12 w-12 text-brand-300" />
         <h1 className="mt-6 text-3xl font-bold">Paiement reçu, merci !</h1>
         <p className="mt-4 text-zinc-400">
-          {amount ? `${amount.toLocaleString("fr-FR")} FCFA reçus. ` : ""}Votre forfait est actif pour 1 mois. Nous vous écrivons dès que le clonage de voix est activé.
+          {amount ? `${amount.toLocaleString("fr-FR")} FCFA reçus. ` : ""}Votre forfait est actif pour 1 mois : retrouvez-le dans « Mon compte » avec le courriel indiqué au paiement.
         </p>
-        <Link href="/studio" className="btn-primary mt-8">Ouvrir le studio</Link>
+        <div className="mt-8 flex justify-center gap-3"><Link href="/compte" className="btn-primary">Mon compte</Link><Link href="/studio" className="btn-ghost">Ouvrir le studio</Link></div>
       </>
     );
 

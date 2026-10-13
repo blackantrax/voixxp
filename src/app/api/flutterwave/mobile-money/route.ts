@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { chargeMobileMoney, flutterwaveEnabled } from "@/lib/flutterwave";
 import { MOBILE_MONEY, type PaidPlan } from "@/lib/plans";
+import { recordPending } from "@/lib/subscriptions";
 
 // Numero camerounais : 9 chiffres commencant par 6, avec ou sans l'indicatif 237.
 function normalizeCameroon(raw: string) {
@@ -27,5 +28,6 @@ export async function POST(req: Request) {
     console.error("[flutterwave] prelevement Mobile Money refuse", error);
     return NextResponse.json({ error: "Le paiement Mobile Money est momentanément indisponible." }, { status: 502 });
   }
+  await recordPending({ ref: txRef, plan, email, phone, amount: MOBILE_MONEY.plans[plan], currency: MOBILE_MONEY.currency });
   return NextResponse.redirect(redirect ?? `${origin}/paiement?ref=${txRef}`, 303);
 }

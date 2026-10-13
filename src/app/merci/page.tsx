@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CircleAlert, PartyPopper } from "lucide-react";
 import { verifyTransaction } from "@/lib/flutterwave";
 import { fcfa } from "@/lib/plans";
+import { activate } from "@/lib/subscriptions";
 
 export const metadata: Metadata = { title: "Bienvenue", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -16,6 +17,7 @@ export default async function Merci({ searchParams }: { searchParams: Params }) 
       searchParams.status !== "cancelled" && searchParams.transaction_id
         ? await verifyTransaction(searchParams.transaction_id, searchParams.tx_ref)
         : { ok: false, reason: "paiement annulé" };
+    if (ok.ok && ok.plan && searchParams.tx_ref) await activate({ ref: searchParams.tx_ref, plan: ok.plan, amount: ok.amount!, currency: ok.currency! });
     if (!ok.ok) {
       return (
         <div className="mx-auto max-w-xl px-4 py-24 text-center">

@@ -10,6 +10,7 @@ export function Header() {
           <Link href="/#voix" className="hidden px-2 hover:text-white sm:block">Voix</Link>
           <Link href="/clonage" className="hidden px-2 hover:text-white sm:block">Clonage</Link>
           <Link href="/#tarifs" className="px-2 hover:text-white">Tarifs</Link>
+          <Link href="/compte" className="hidden px-2 hover:text-white sm:block">Mon compte</Link>
           <Link href="/studio" className="btn-primary !px-4 !py-2">Ouvrir le studio</Link>
         </nav>
       </div>
