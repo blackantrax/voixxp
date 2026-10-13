@@ -2,7 +2,9 @@ import "server-only";
 import { MOBILE_MONEY, type PaidPlan } from "./plans";
 
 // Flutterwave API v3. Les valeurs viennent des variables d'environnement Vercel, jamais du code.
-const base = () => (process.env.FLUTTERWAVE_API_BASE_URL || "https://api.flutterwave.com/v3").replace(/\/$/, "");
+// En v3, le mode test ou reel depend de la cle (FLWSECK_TEST-... ou FLWSECK-...), pas de l'adresse.
+// FLUTTERWAVE_API_BASE_URL designe le bac a sable v4 (OAuth) : on ne l'utilise pas ici.
+const base = () => (process.env.FLUTTERWAVE_V3_API_BASE_URL || "https://api.flutterwave.com/v3").replace(/\/$/, "");
 const secret = () => process.env.FLUTTERWAVE_SECRET_KEY;
 
 // Diagnostic sans secret : hote de l'API et type de cle (prefixe avant le premier tiret, ex. FLWSECK_TEST).

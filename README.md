@@ -43,7 +43,7 @@ Variables Vercel (Production et Preview), valeurs jamais dans le code :
 | --- | --- |
 | `FLUTTERWAVE_SECRET_KEY` | Clé secrète v3 (`FLWSECK_TEST-…` en test). Active l'option Mobile Money sur la page des tarifs. |
 | `FLUTTERWAVE_V3_WEBHOOK_HASH` | « Secret hash » saisi dans Flutterwave > Settings > Webhooks (repli : `FLUTTERWAVE_WEBHOOK_SECRET_HASH`). |
-| `FLUTTERWAVE_API_BASE_URL` | Optionnel, défaut `https://api.flutterwave.com/v3`. |
+| `FLUTTERWAVE_V3_API_BASE_URL` | Optionnel, défaut `https://api.flutterwave.com/v3`. (`FLUTTERWAVE_API_BASE_URL` désigne le bac à sable v4 et n'est pas utilisé.) |
 
 URL du webhook à déclarer chez Flutterwave : `https://www.voixxp.com/api/flutterwave/webhook`.
 Les prix en XAF sont dans `src/lib/plans.ts` (`MOBILE_MONEY`). Chaque paiement est re-vérifié auprès
