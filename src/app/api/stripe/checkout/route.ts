@@ -8,7 +8,8 @@ export async function POST(req: Request) {
   const form = await req.formData().catch(() => null);
   const plan = String(form?.get("plan") ?? "") as PaidPlan;
   if (!(plan in PAID_PLANS)) return NextResponse.json({ error: "Forfait inconnu." }, { status: 400 });
-  if (!stripeEnabled()) return NextResponse.redirect(PAID_PLANS[plan].link, 303);
+  const indisponible = new URL("/?paiement=indisponible#tarifs", req.url);
+  if (!stripeEnabled()) return NextResponse.redirect(indisponible, 303);
 
   const supabase = supabaseServer();
   const { data } = await supabase.auth.getUser();
@@ -18,5 +19,5 @@ export async function POST(req: Request) {
     customerId = prev?.stripe_customer_id ?? undefined;
   }
   const url = await createCheckout({ plan, origin: new URL(req.url).origin, email: data.user?.email, userId: data.user?.id, customerId });
-  return NextResponse.redirect(url ?? PAID_PLANS[plan].link, 303);
+  return NextResponse.redirect(url ?? indisponible, 303);
 }

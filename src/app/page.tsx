@@ -48,7 +48,7 @@ const USES = [
   { icon: Globe2, title: "Doublage multilingue", text: "Rejoignez les publics anglophone, hispanophone et européen avec votre propre voix." },
 ];
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams?: { paiement?: string } }) {
   const mobileMoney = flutterwaveEnabled();
   const featured = VOICES.filter((v) => v.rating >= 4).slice(0, 8);
   return (
@@ -171,6 +171,11 @@ export default function Home() {
       <section id="tarifs" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-16">
         <h2 className="text-center text-3xl font-bold">Des tarifs simples, en dollars canadiens</h2>
         <p className="mt-2 text-center text-zinc-400">Commencez gratuitement. Passez à Créateur quand vous voulez votre propre voix.</p>
+        {searchParams?.paiement === "indisponible" && (
+          <p role="alert" className="mx-auto mt-6 max-w-xl rounded-xl bg-red-500/10 p-3 text-center text-sm text-red-300">
+            Le paiement par carte est momentanément indisponible. Réessayez dans quelques minutes ou écrivez-nous.
+          </p>
+        )}
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {PLANS.map((p) => (
             <div key={p.id} className={`card flex flex-col p-6 ${p.featured ? "border-brand-400 shadow-2xl shadow-brand-600/20" : ""}`}>
