@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 const PLAN_NAMES: Record<string, string> = { createur: "Créateur", studio: "Studio" };
 
-type Sub = { id: number; plan: string; status: string; amount: number; currency: string; provider: string; current_period_end: string | null; created_at: string };
+type Sub = { id: number; plan: string; status: string; amount: number; currency: string; provider: string; current_period_end: string | null; created_at: string; cancel_at_period_end: boolean; stripe_customer_id: string | null };
 
 const money = (s: Sub) =>
   s.currency === "XAF" ? `${s.amount.toLocaleString("fr-FR")} FCFA` : `${(s.amount / 100).toLocaleString("fr-CA")} ${s.currency === "CAD" ? "$" : s.currency}`;
@@ -22,11 +22,12 @@ export default async function Compte() {
 
   const { data } = await supabase
     .from("subscriptions")
-    .select("id, plan, status, amount, currency, provider, current_period_end, created_at")
+    .select("id, plan, status, amount, currency, provider, current_period_end, created_at, cancel_at_period_end, stripe_customer_id")
     .in("status", ["active", "expired", "canceled"])
     .order("created_at", { ascending: false });
   const subs = (data ?? []) as Sub[];
   const now = Date.now();
+  const hasStripe = subs.some((s) => s.provider === "stripe" && s.stripe_customer_id);
   const active = subs.find((s) => s.status === "active" && s.current_period_end && new Date(s.current_period_end).getTime() > now);
 
   return (
@@ -47,9 +48,15 @@ export default async function Compte() {
             <div>
               <p className="font-medium">VoixXP {PLAN_NAMES[active.plan] ?? active.plan} — actif</p>
               <p className="text-sm text-zinc-400">
-                Jusqu&apos;au {new Date(active.current_period_end!).toLocaleDateString("fr-CA", { day: "numeric", month: "long", year: "numeric" })}.
+                {active.cancel_at_period_end ? "Résiliation prévue le" : active.provider === "stripe" ? "Prochain renouvellement le" : "Jusqu'au"}{" "}
+                {new Date(active.current_period_end!).toLocaleDateString("fr-CA", { day: "numeric", month: "long", year: "numeric" })}.
                 Le clonage de voix s&apos;activera ici dès son ouverture.
               </p>
+              {hasStripe && (
+                <form action="/api/stripe/portal" method="post" className="mt-4">
+                  <button className="btn-ghost">Gérer mon abonnement et mes factures</button>
+                </form>
+              )}
             </div>
           </div>
         ) : (

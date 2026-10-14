@@ -4,7 +4,7 @@ import { CircleAlert, PartyPopper } from "lucide-react";
 import { verifyTransaction } from "@/lib/flutterwave";
 import { fcfa } from "@/lib/plans";
 import { activate } from "@/lib/subscriptions";
-import { verifyCheckoutSession } from "@/lib/stripe";
+import { confirmCheckoutSession } from "@/lib/stripe";
 
 export const metadata: Metadata = { title: "Bienvenue", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -47,12 +47,7 @@ export default async function Merci({ searchParams }: { searchParams: Params }) 
 
   // Retour de Stripe : on rattache l'abonnement au courriel du client (verifie aupres de Stripe).
   if (searchParams.fournisseur === "stripe" && searchParams.session) {
-    const r = await verifyCheckoutSession(searchParams.session);
-    if (r.ok && r.plan && r.ref) {
-      await activate({ provider: "stripe", ref: r.ref, plan: r.plan, amount: r.amount ?? 0, currency: r.currency ?? "CAD", email: r.email, periodEnd: r.periodEnd });
-    } else if (r.reason !== "cle Stripe absente") {
-      console.error("[stripe] verification de la session", r.reason);
-    }
+    await confirmCheckoutSession(searchParams.session);
   }
 
   return (

@@ -197,9 +197,10 @@ export default function Home() {
                 ) : (
                   <>
                     <p className="mb-2 text-xs text-zinc-500">Prix fondateur garanti à vie pour les 100 premiers membres. Le clonage ouvre en accès anticipé, membres en priorité. Résiliable en tout temps.</p>
-                    <a href={PAID_PLANS[p.id as PaidPlan].link} className={p.featured ? "btn-primary w-full" : "btn-ghost w-full"}>
-                      Devenir membre fondateur
-                    </a>
+                    <form action="/api/stripe/checkout" method="post">
+                      <input type="hidden" name="plan" value={p.id} />
+                      <button className={p.featured ? "btn-primary w-full" : "btn-ghost w-full"}>Devenir membre fondateur</button>
+                    </form>
                     {mobileMoney && (
                       <details className="mt-3 rounded-xl border border-white/10 p-3 text-sm">
                         <summary className="cursor-pointer text-zinc-300">
