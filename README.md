@@ -48,3 +48,21 @@ Variables Vercel (Production et Preview), valeurs jamais dans le code :
 URL du webhook à déclarer chez Flutterwave : `https://www.voixxp.com/api/flutterwave/webhook`.
 Les prix en XAF sont dans `src/lib/plans.ts` (`MOBILE_MONEY`). Chaque paiement est re-vérifié auprès
 de l'API (statut, référence, montant, devise) au retour sur `/merci` et à la réception du webhook.
+
+## Paiements par carte (Stripe Billing)
+
+Compte Stripe « VoixXP » (organisation Omerta Corp). Plan d'intégration Stripe : Checkout hébergé en mode
+abonnement, portail client, webhooks, Smart Retries, surveillance des seuils de taxes.
+
+| Variable Vercel | Rôle |
+| --- | --- |
+| `STRIPE_SECRET_KEY` | Clé restreinte : écriture Checkout Sessions et Customer portal ; lecture Subscriptions, Customers, Invoices, Prices. Sans elle, repli sur les liens de paiement. |
+| `STRIPE_WEBHOOK_SECRET` | Secret `whsec_…` de la destination « VoixXP site ». |
+| `STRIPE_PRICE_CREATEUR`, `STRIPE_PRICE_STUDIO` | Prix du mode réel (sinon prix de test de `src/lib/plans.ts`). |
+
+- Webhook : `https://www.voixxp.com/api/stripe/webhook`, événements `checkout.session.completed`,
+  `invoice.paid`, `invoice.payment_failed`, `customer.subscription.updated`, `customer.subscription.deleted`.
+- Portail client : configuration `VoixXP` par défaut (factures, carte, changement de forfait, résiliation
+  en fin de période), retour vers `/compte`.
+- Passage en réel : recréer produits, prix et portail dans le mode réel du compte VoixXP, renseigner
+  les variables ci-dessus avec les valeurs réelles, et une nouvelle destination webhook en mode réel.
