@@ -60,7 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf "$RUNNER_TEMP/voixxp" && mkdir -p "$RUNNER_TEMP/voixxp"
-          tar --exclude=./.git --exclude=./.github --exclude=./node_modules --exclude=./.next --exclude=./public/workers -cf - . | tar -xf - -C "$RUNNER_TEMP/voixxp"
+          tar --exclude=./.git --exclude=./.github --exclude=./.claude --exclude=./founder --exclude=./node_modules --exclude=./.next --exclude=./public/workers -cf - . | tar -xf - -C "$RUNNER_TEMP/voixxp"
 
       - name: Verifier la presence du jeton Vercel
         env:
