@@ -1,9 +1,9 @@
-// Forfaits payants : liens de paiement Stripe heberges (aucune cle secrete cote site).
+// Forfaits payants : liens de paiement Stripe heberges, compte Stripe « VoixXP » (organisation Omerta Corp).
 // Prix en cents CAD. `founder` = prix fondateur garanti a vie pour les premiers membres.
 // MODE TEST : remplacer `link` par les liens du mode reel avant le lancement public.
 export const PAID_PLANS = {
-  createur: { regular: 1200, founder: 600, link: "https://buy.stripe.com/test_fZu6oG0S4fg94ve47T7Zu00" },
-  studio: { regular: 3900, founder: 1900, link: "https://buy.stripe.com/test_fZufZgcAMgkd3raawh7Zu01" },
+  createur: { regular: 1200, founder: 600, link: "https://buy.stripe.com/test_5kQ7sLd5sdvj5TqcxQ2ZO00" },
+  studio: { regular: 3900, founder: 1900, link: "https://buy.stripe.com/test_aFabJ19Tgcrffu01Tc2ZO01" },
 } as const;
 
 export type PaidPlan = keyof typeof PAID_PLANS;

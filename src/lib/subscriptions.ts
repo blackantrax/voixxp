@@ -16,14 +16,18 @@ export async function recordPending(o: { ref: string; plan: PaidPlan; email: str
 }
 
 // Paiement confirme aupres du fournisseur : forfait actif 30 jours. Idempotent (webhook + page de retour).
-export async function activate(o: { ref: string; plan: PaidPlan; amount: number; currency: string; email?: string }) {
+export async function activate(o: {
+  ref: string; plan: PaidPlan; amount: number; currency: string; email?: string;
+  provider?: "flutterwave" | "stripe"; periodEnd?: Date;
+}) {
   const db = supabaseAdmin();
   if (!db) return;
-  const { data: existing } = await db.from("subscriptions").select("id, status").eq("provider", "flutterwave").eq("provider_ref", o.ref).maybeSingle();
+  const provider = o.provider ?? "flutterwave";
+  const { data: existing } = await db.from("subscriptions").select("id, status").eq("provider", provider).eq("provider_ref", o.ref).maybeSingle();
   if (existing?.status === "active") return;
-  const row = { status: "active", amount: o.amount, currency: o.currency, current_period_end: new Date(Date.now() + DAYS_30).toISOString() };
+  const row = { status: "active", amount: o.amount, currency: o.currency, current_period_end: (o.periodEnd ?? new Date(Date.now() + DAYS_30)).toISOString() };
   const { error } = existing
     ? await db.from("subscriptions").update(row).eq("id", existing.id)
-    : await db.from("subscriptions").insert({ ...row, provider: "flutterwave", provider_ref: o.ref, plan: o.plan, email: o.email ?? null });
+    : await db.from("subscriptions").insert({ ...row, provider, provider_ref: o.ref, plan: o.plan, email: o.email?.toLowerCase() ?? null });
   if (error) console.error("[abonnements] activation", error.message);
 }

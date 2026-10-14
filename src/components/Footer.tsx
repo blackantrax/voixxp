@@ -19,9 +19,12 @@ export function Footer() {
           <p className="font-semibold text-zinc-200">Contact</p>
           <a href="mailto:bonjour@voixxp.com" className="block hover:text-white">bonjour@voixxp.com</a>
           <Link href="/#tarifs" className="block hover:text-white">Agences et partenariats</Link>
+          <Link href="/conditions" className="block hover:text-white">Conditions d&apos;utilisation</Link>
+          <Link href="/confidentialite" className="block hover:text-white">Confidentialité</Link>
+          <Link href="/remboursement" className="block hover:text-white">Remboursements</Link>
         </div>
       </div>
-      <p className="pb-8 text-center text-xs text-zinc-600">© {new Date().getFullYear()} VoixXP. ElevenLabs est une marque de son propriétaire ; VoixXP n&apos;y est pas affilié.</p>
+      <p className="pb-8 text-center text-xs text-zinc-600">© {new Date().getFullYear()} XP Media Inc. VoixXP est une marque de XP Media Inc. ElevenLabs est une marque de son propriétaire ; VoixXP n&apos;y est pas affilié.</p>
     </footer>
   );
 }

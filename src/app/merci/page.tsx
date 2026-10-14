@@ -4,11 +4,12 @@ import { CircleAlert, PartyPopper } from "lucide-react";
 import { verifyTransaction } from "@/lib/flutterwave";
 import { fcfa } from "@/lib/plans";
 import { activate } from "@/lib/subscriptions";
+import { verifyCheckoutSession } from "@/lib/stripe";
 
 export const metadata: Metadata = { title: "Bienvenue", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
-type Params = { fournisseur?: string; status?: string; tx_ref?: string; transaction_id?: string };
+type Params = { fournisseur?: string; status?: string; tx_ref?: string; transaction_id?: string; session?: string };
 
 export default async function Merci({ searchParams }: { searchParams: Params }) {
   // Retour de Flutterwave : on confirme le paiement aupres de l'API avant d'afficher quoi que ce soit.
@@ -44,15 +45,28 @@ export default async function Merci({ searchParams }: { searchParams: Params }) 
     );
   }
 
+  // Retour de Stripe : on rattache l'abonnement au courriel du client (verifie aupres de Stripe).
+  if (searchParams.fournisseur === "stripe" && searchParams.session) {
+    const r = await verifyCheckoutSession(searchParams.session);
+    if (r.ok && r.plan && r.ref) {
+      await activate({ provider: "stripe", ref: r.ref, plan: r.plan, amount: r.amount ?? 0, currency: r.currency ?? "CAD", email: r.email, periodEnd: r.periodEnd });
+    } else if (r.reason !== "cle Stripe absente") {
+      console.error("[stripe] verification de la session", r.reason);
+    }
+  }
+
   return (
     <div className="mx-auto max-w-xl px-4 py-24 text-center">
       <PartyPopper className="mx-auto h-12 w-12 text-brand-300" />
       <h1 className="mt-6 text-3xl font-bold">Bienvenue parmi les membres fondateurs !</h1>
       <p className="mt-4 text-zinc-400">
         Votre abonnement est actif et votre prix fondateur est garanti à vie. Votre reçu arrive par courriel.
-        Nous vous écrivons dès que le clonage de voix est activé sur votre compte.
+        Retrouvez votre forfait dans « Mon compte » avec le courriel utilisé au paiement.
       </p>
-      <Link href="/studio" className="btn-primary mt-8">Ouvrir le studio</Link>
+      <div className="mt-8 flex justify-center gap-3">
+        <Link href="/compte" className="btn-primary">Mon compte</Link>
+        <Link href="/studio" className="btn-ghost">Ouvrir le studio</Link>
+      </div>
     </div>
   );
 }
