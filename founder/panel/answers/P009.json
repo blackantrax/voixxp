@@ -1,0 +1,13 @@
+{
+  "id": "P009",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "Le gratuit et illimité me suffit pour mes trois Reels par semaine, et je paie juste si c'est indispensable. Le clonage, le seul vrai avantage du forfait, n'est même pas ouvert et les voix québécoises non plus.",
+  "objection": "Encore un abonnement pour quelque chose qui n'existe pas encore. Je paierais pour une promesse, et les voix québécoises ne sont pas là.",
+  "would_change_my_mind": "Que le clonage soit ouvert et que je puisse l'essayer avec ma propre voix et un accent québécois avant de payer, ou un petit achat unique sans abonnement.",
+  "price_too_cheap": 2,
+  "price_cheap": 4,
+  "price_expensive": 8,
+  "price_too_expensive": 12
+}

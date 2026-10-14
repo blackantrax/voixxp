@@ -1,0 +1,13 @@
+{
+  "id": "P004",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Le gratuit et illimité me suffit pour mes trois Reels par semaine, je vais l'essayer comme tous les autres outils IA. Payer pour du clonage qui n'est même pas ouvert, d'une entreprise que je ne connais pas, non.",
+  "objection": "Je ne connais pas cette entreprise, est-ce qu'elle sera encore là dans six mois? Le clonage n'existe pas encore et les voix québécoises non plus, donc je paierais pour une promesse.",
+  "would_change_my_mind": "Le clonage ouvert et fonctionnel avec une voix québécoise, que je peux tester gratuitement avant de payer.",
+  "price_too_cheap": 2,
+  "price_cheap": 5,
+  "price_expensive": 15,
+  "price_too_expensive": 25
+}

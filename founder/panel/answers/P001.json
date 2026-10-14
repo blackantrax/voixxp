@@ -1,0 +1,13 @@
+{
+  "id": "P001",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "Le gratuit illimité me suffit pour tester, et ce que je voudrais vraiment (clonage, voix québécoises) n'existe pas encore. Je ne paie pas pour une promesse, j'ai déjà Canva Pro et ChatGPT Plus et je déteste empiler les abonnements.",
+  "objection": "Une voix IA en français sonne encore robotique ou trop française de France, et les voix québécoises ne sont même pas disponibles. Payer 6 $ à vie pour du clonage qui n'est pas ouvert, c'est parier sur du vent.",
+  "would_change_my_mind": "Entendre une vraie voix québécoise naturelle qui marche déjà, et que le clonage soit ouvert avec un essai gratuit ou un paiement unique à vie sans abonnement mensuel.",
+  "price_too_cheap": 2,
+  "price_cheap": 5,
+  "price_expensive": 12,
+  "price_too_expensive": 20
+}

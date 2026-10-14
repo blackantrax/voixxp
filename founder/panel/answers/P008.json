@@ -1,0 +1,13 @@
+{
+  "id": "P008",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "Le gratuit illimité me suffit pour mes pubs Facebook, et je n'ai pas besoin de payer pour ça. Encore un abonnement mensuel, non merci.",
+  "objection": "Ce que je veux (cloner ma voix, les voix québécoises) n'est même pas disponible encore. Je paierais pour une promesse, et j'ai déjà assez d'abonnements à ma boutique.",
+  "would_change_my_mind": "Que le clonage et les voix québécoises soient disponibles et que je puisse les essayer gratuitement avant de payer, avec un paiement unique plutôt qu'un abonnement.",
+  "price_too_cheap": 2,
+  "price_cheap": 4,
+  "price_expensive": 8,
+  "price_too_expensive": 12
+}

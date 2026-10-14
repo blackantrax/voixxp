@@ -1,0 +1,13 @@
+{
+  "id": "P010",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "quality",
+  "reason": "Mon public est québécois et les voix québécoises ne sont pas encore disponibles, donc je ne peux pas les utiliser dans mes pubs. Le gratuit me suffit pour tester, mais je ne paie pas pour une promesse.",
+  "objection": "Pas de voix québécoises pour l'instant, et le clonage n'est même pas ouvert. Je paierais pour du français de France qui fait décrocher mes clients d'ici? Non.",
+  "would_change_my_mind": "Une voix québécoise disponible que je peux écouter et tester gratuitement, qui ne sonne ni robotique ni français de France.",
+  "price_too_cheap": 3,
+  "price_cheap": 7,
+  "price_expensive": 15,
+  "price_too_expensive": 25
+}

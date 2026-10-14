@@ -1,0 +1,13 @@
+{
+  "id": "P019",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "quality",
+  "reason": "Mon public est québécois et les voix québécoises ne sont même pas disponibles encore, alors le clonage et le forfait payant ne me servent à rien aujourd'hui. Le gratuit me suffit pour essayer, et je paie déjà Canva et ChatGPT, je n'ajoute pas un abonnement pour une promesse.",
+  "objection": "Pas de voix québécoises ni de clonage pour l'instant. Si ça sonne français de France ou robot, c'est inutilisable pour mon public, et ElevenLabs coûte à peu près pareil.",
+  "would_change_my_mind": "Une voix québécoise disponible que je peux écouter et qui sonne naturelle, ou un clonage de ma propre voix qui fonctionne vraiment, avant de payer.",
+  "price_too_cheap": 3,
+  "price_cheap": 6,
+  "price_expensive": 15,
+  "price_too_expensive": 25
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P016",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "need",
+  "reason": "Le gratuit illimité me suffit pour l'instant, et ce qui justifierait de payer (le clonage, les voix québécoises) n'est même pas ouvert. Je ne vais pas ajouter un abonnement pour des promesses.",
+  "objection": "Je paierais pour du clonage et des voix québécoises, mais ni l'un ni l'autre n'existe encore. Et je monte sur mon téléphone avec CapCut, donc je ne sais pas si le WAV dans le navigateur s'intègre vite à mon flow.",
+  "would_change_my_mind": "Des voix québécoises qui sonnent bien, disponibles maintenant, et le clonage de ma voix ouvert, avec un essai gratuit avant de payer.",
+  "price_too_cheap": 3,
+  "price_cheap": 6,
+  "price_expensive": 15,
+  "price_too_expensive": 25
+}

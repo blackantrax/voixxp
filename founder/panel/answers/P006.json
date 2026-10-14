@@ -1,0 +1,13 @@
+{
+  "id": "P006",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "Je paie déjà ElevenLabs depuis des mois et mes voix sont là. Je fais un podcast par mois, je n'ai pas besoin d'un deuxième abonnement pour ça, et le gratuit de CapCut suffit pour le reste.",
+  "objection": "Le clonage n'existe même pas encore et les voix québécoises non plus, donc je paierais pour une promesse alors que j'ai déjà ce qu'il me faut ailleurs.",
+  "would_change_my_mind": "Une vraie voix québécoise clonée qui sonne mieux que mon clone ElevenLabs, déjà disponible, pour moins cher que ce que je paie là-bas.",
+  "price_too_cheap": 2,
+  "price_cheap": 5,
+  "price_expensive": 12,
+  "price_too_expensive": 20
+}

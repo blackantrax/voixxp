@@ -1,0 +1,183 @@
+{
+ "business": "VoixXP, studio de voix IA en français (synthèse vocale et clonage de voix) pour créateurs de contenu",
+ "seed": 800005,
+ "dealt": 20,
+ "answered": 20,
+ "skipped": [],
+ "buys": 0,
+ "passes": 20,
+ "buy_rate": 0.0,
+ "by_segment": [
+  [
+   "Petite entreprise ou boutique en ligne qui fait ses propres pubs et vidéos",
+   4,
+   0.0
+  ],
+  [
+   "Pigiste ou petite agence qui produit pour des clients",
+   2,
+   0.0
+  ],
+  [
+   "Créateur établi qui vit en partie de ses contenus",
+   2,
+   0.0
+  ],
+  [
+   "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+   12,
+   0.0
+  ]
+ ],
+ "by_behaviour": [
+  [
+   "Chasseur de rabais",
+   1,
+   0.0
+  ],
+  [
+   "Lit les avis avant d'acheter",
+   1,
+   0.0
+  ],
+  [
+   "Collectionneur d'outils IA",
+   3,
+   0.0
+  ],
+  [
+   "Déjà abonné à ElevenLabs",
+   3,
+   0.0
+  ],
+  [
+   "Exigeant sur l'accent",
+   4,
+   0.0
+  ],
+  [
+   "Utilisateur des outils gratuits",
+   5,
+   0.0
+  ],
+  [
+   "Pressé par la production",
+   3,
+   0.0
+  ]
+ ],
+ "by_income": [
+  [
+   "$67,000 and up",
+   7,
+   0.0
+  ],
+  [
+   "$45,000 to $67,000",
+   7,
+   0.0
+  ],
+  [
+   "under $45,000",
+   6,
+   0.0
+  ]
+ ],
+ "why_not": [
+  [
+   "habit",
+   5,
+   [
+    "Je paie déjà ElevenLabs depuis des mois, j'ai mes voix et mes réglages là-bas. Ici le clonage n'est même pas ouvert et les voix québécoises sont juste prévues, donc je paierais pour une promesse.",
+    "Je paie déjà ElevenLabs depuis des mois et mes voix sont là. Je fais un podcast par mois, je n'ai pas besoin d'un deuxième abonnement pour ça, et le gratuit de CapCut suffit pour le reste."
+   ],
+   [
+    "P005",
+    "P006"
+   ]
+  ],
+  [
+   "need",
+   4,
+   [
+    "Le gratuit illimité me suffit pour tester, et CapCut me donne déjà des voix sans payer. Ce qui justifierait de payer, le clonage et les voix québécoises, n'existe pas encore, donc je ne paie pas pour une promesse.",
+    "Le gratuit illimité me suffit pour tester, et mon podcast mensuel avec un ami n'est même pas commandité. Le clonage, ce qui me ferait payer, n'est même pas ouvert, et il n'y a pas encore de voix québécoises."
+   ],
+   [
+    "P002",
+    "P014"
+   ]
+  ],
+  [
+   "trust",
+   4,
+   [
+    "Je vais probablement tester le gratuit parce que c'est illimité et que je teste tout, mais payer maintenant, non. Le clonage et les voix québécoises, qui sont les vraies raisons de payer, n'existent pas encore, et je ne connais pas cette boîte.",
+    "Le gratuit et illimité me suffit pour mes trois Reels par semaine, je vais l'essayer comme tous les autres outils IA. Payer pour du clonage qui n'est même pas ouvert, d'une entreprise que je ne connais pas, non."
+   ],
+   [
+    "P003",
+    "P004"
+   ]
+  ],
+  [
+   "price",
+   3,
+   [
+    "Le gratuit illimité me suffit pour mes pubs Facebook, et je n'ai pas besoin de payer pour ça. Encore un abonnement mensuel, non merci.",
+    "Le gratuit et illimité me suffit pour mes trois Reels par semaine, et je paie juste si c'est indispensable. Le clonage, le seul vrai avantage du forfait, n'est même pas ouvert et les voix québécoises non plus."
+   ],
+   [
+    "P008",
+    "P009"
+   ]
+  ],
+  [
+   "quality",
+   3,
+   [
+    "Mon public est québécois et les voix québécoises ne sont pas encore disponibles, donc je ne peux pas les utiliser dans mes pubs. Le gratuit me suffit pour tester, mais je ne paie pas pour une promesse.",
+    "Les voix québécoises ne sont pas encore là, et le clonage non plus, donc je paierais pour une promesse. Mon public est québécois, une voix qui sonne France ou robot, ça me coûte des abonnés. Je vais peut-être essayer le gratuit, mais je ne sors pas ma carte."
+   ],
+   [
+    "P010",
+    "P017"
+   ]
+  ],
+  [
+   "timing",
+   1,
+   [
+    "Le gratuit illimité me suffit pour tester, et ce que je voudrais vraiment (clonage, voix québécoises) n'existe pas encore. Je ne paie pas pour une promesse, j'ai déjà Canva Pro et ChatGPT Plus et je déteste empiler les abonnements."
+   ],
+   [
+    "P001"
+   ]
+  ]
+ ],
+ "why_yes": [],
+ "flip": [
+  "Entendre une vraie voix québécoise naturelle qui marche déjà, et que le clonage soit ouvert avec un essai gratuit ou un paiement unique à vie sans abonnement mensuel.",
+  "Le clonage ouvert avec une voix québécoise convaincante, et des avis ou des comparaisons sur YouTube ou Reddit qui montrent que ça tient la route face à ce que j'ai déjà.",
+  "Le clonage ouvert et fonctionnel avec une voix québécoise convaincante que je peux essayer d'abord, plus des exemples de créateurs réels qui l'utilisent et une garantie de remboursement.",
+  "Le clonage ouvert et fonctionnel avec une voix québécoise, que je peux tester gratuitement avant de payer.",
+  "Le clonage ouvert et fonctionnel avec de vraies voix québécoises, une licence commerciale claire par écrit, et un essai où je compare à ElevenLabs sur mon propre texte.",
+  "Une vraie voix québécoise clonée qui sonne mieux que mon clone ElevenLabs, déjà disponible, pour moins cher que ce que je paie là-bas.",
+  "Entendre une vraie voix québécoise naturelle, disponible maintenant, qui passe l'oreille de mon public dans une pub; ou clonage ouvert et fonctionnel avec ma voix.",
+  "Que le clonage et les voix québécoises soient disponibles et que je puisse les essayer gratuitement avant de payer, avec un paiement unique plutôt qu'un abonnement.",
+  "Que le clonage soit ouvert et que je puisse l'essayer avec ma propre voix et un accent québécois avant de payer, ou un petit achat unique sans abonnement.",
+  "Une voix québécoise disponible que je peux écouter et tester gratuitement, qui ne sonne ni robotique ni français de France.",
+  "Des voix québécoises réelles et le clonage de ma voix qui marchent, avec un essai que je peux tester avant de payer.",
+  "Que le clonage de ma voix et des voix québécoises soient ouverts et que je puisse les essayer gratuitement avant de payer.",
+  "Que le clonage de ma voix et les voix québécoises soient réellement disponibles, avec un essai gratuit du plan payant et quelques créateurs québécois connus qui l'utilisent.",
+  "Que le clonage soit ouvert et que je puisse cloner ma voix et celle de mon ami pour le podcast, avec des voix québécoises qui sonnent vraiment bien, et une licence claire sur ce que j'ai le droit de faire.",
+  "Le clonage ouvert et fonctionnel avec une vraie voix québécoise qui sonne mieux que mon ElevenLabs actuel, et des preuves que l'entreprise est stable (avis de vrais créateurs, historique). Je testerais le gratuit d'abord.",
+  "Des voix québécoises qui sonnent bien, disponibles maintenant, et le clonage de ma voix ouvert, avec un essai gratuit avant de payer.",
+  "Entendre une vraie voix québécoise naturelle dans le gratuit, qui passe auprès de mon public, et le clonage de ma voix déjà ouvert.",
+  "Des voix québécoises disponibles tout de suite et un export MP3 payant qui sauve vraiment du temps, à moins de 6 $ par mois, sans engagement.",
+  "Une voix québécoise disponible que je peux écouter et qui sonne naturelle, ou un clonage de ma propre voix qui fonctionne vraiment, avant de payer.",
+  "Que le clonage soit ouvert et que je puisse l'essayer avec ma voix, avec des voix québécoises, avant de payer."
+ ],
+ "purchases_first_month_per_buyer": null,
+ "price_answers": 20
+}

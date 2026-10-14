@@ -1,0 +1,13 @@
+{
+  "id": "P002",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "need",
+  "reason": "Le gratuit illimité me suffit pour tester, et CapCut me donne déjà des voix sans payer. Ce qui justifierait de payer, le clonage et les voix québécoises, n'existe pas encore, donc je ne paie pas pour une promesse.",
+  "objection": "Je paierais pour du clonage et des accents québécois, mais ils ne sont pas disponibles. Je n'ai aucune preuve que ça sonne bien, ni avis ni démo comparée à ElevenLabs, et je n'achète pas à l'aveugle.",
+  "would_change_my_mind": "Le clonage ouvert avec une voix québécoise convaincante, et des avis ou des comparaisons sur YouTube ou Reddit qui montrent que ça tient la route face à ce que j'ai déjà.",
+  "price_too_cheap": 3,
+  "price_cheap": 6,
+  "price_expensive": 15,
+  "price_too_expensive": 25
+}

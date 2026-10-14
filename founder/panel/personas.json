@@ -1,0 +1,222 @@
+[
+  {
+    "id": "P001",
+    "name": "Tomas",
+    "age": 35,
+    "segment": "Petite entreprise ou boutique en ligne qui fait ses propres pubs et vidéos",
+    "income": 86000,
+    "behaviour": "Chasseur de rabais",
+    "behaviour_how": "Compare les prix, cherche les offres à vie et les codes promo, déteste les abonnements de plus.",
+    "objection": "Une voix IA en français sonne encore robotique ou trop française de France",
+    "habit": "tu paies déjà Canva Pro et ChatGPT Plus chaque mois"
+  },
+  {
+    "id": "P002",
+    "name": "Tariq",
+    "age": 28,
+    "segment": "Pigiste ou petite agence qui produit pour des clients",
+    "income": 110000,
+    "behaviour": "Lit les avis avant d'acheter",
+    "behaviour_how": "Cherche des avis, des démos et des comparaisons sur YouTube ou Reddit avant de payer.",
+    "objection": "Les voix de CapCut et TikTok sont gratuites et suffisent",
+    "habit": "tu paies déjà Canva Pro et ChatGPT Plus chaque mois"
+  },
+  {
+    "id": "P003",
+    "name": "Alma",
+    "age": 28,
+    "segment": "Créateur établi qui vit en partie de ses contenus",
+    "income": 84000,
+    "behaviour": "Collectionneur d'outils IA",
+    "behaviour_how": "Teste chaque nouvel outil IA vu sur TikTok ou YouTube, garde ceux qui font gagner du temps.",
+    "objection": "Je ne connais pas cette entreprise, est-ce qu'elle sera encore là dans six mois ?",
+    "habit": "tu paies déjà Canva Pro et ChatGPT Plus chaque mois"
+  },
+  {
+    "id": "P004",
+    "name": "Omar",
+    "age": 45,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 48000,
+    "behaviour": "Collectionneur d'outils IA",
+    "behaviour_how": "Teste chaque nouvel outil IA vu sur TikTok ou YouTube, garde ceux qui font gagner du temps.",
+    "objection": "Je ne connais pas cette entreprise, est-ce qu'elle sera encore là dans six mois ?",
+    "habit": "tu publies trois Reels ou TikTok par semaine pour ta page"
+  },
+  {
+    "id": "P005",
+    "name": "Raj",
+    "age": 32,
+    "segment": "Petite entreprise ou boutique en ligne qui fait ses propres pubs et vidéos",
+    "income": 70000,
+    "behaviour": "Déjà abonné à ElevenLabs",
+    "behaviour_how": "Paie ElevenLabs depuis des mois et a ses voix et ses habitudes là-bas.",
+    "objection": "Est-ce que j'ai vraiment le droit d'utiliser ces voix pour du contenu commercial ou commandité ?",
+    "habit": "tu montes tes vidéos le soir sur ton téléphone avec CapCut"
+  },
+  {
+    "id": "P006",
+    "name": "Hugo",
+    "age": 31,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 36000,
+    "behaviour": "Déjà abonné à ElevenLabs",
+    "behaviour_how": "Paie ElevenLabs depuis des mois et a ses voix et ses habitudes là-bas.",
+    "objection": "Les voix de CapCut et TikTok sont gratuites et suffisent",
+    "habit": "tu fais un podcast mensuel avec un ami"
+  },
+  {
+    "id": "P007",
+    "name": "Kai",
+    "age": 45,
+    "segment": "Petite entreprise ou boutique en ligne qui fait ses propres pubs et vidéos",
+    "income": 105000,
+    "behaviour": "Exigeant sur l'accent",
+    "behaviour_how": "Rejette toute voix qui sonne français de France ou robotique ; son public est québécois.",
+    "objection": "Le clonage de voix n'est pas encore disponible, je paierais pour une promesse",
+    "habit": "tu fais des pubs Facebook pour ta boutique Shopify"
+  },
+  {
+    "id": "P008",
+    "name": "Elena",
+    "age": 42,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 31000,
+    "behaviour": "Utilisateur des outils gratuits",
+    "behaviour_how": "Utilise les voix intégrées de CapCut ou TikTok et ne paie un abonnement que si c'est indispensable.",
+    "objection": "Encore un abonnement mensuel de plus",
+    "habit": "tu fais des pubs Facebook pour ta boutique Shopify"
+  },
+  {
+    "id": "P009",
+    "name": "Yara",
+    "age": 44,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 35000,
+    "behaviour": "Utilisateur des outils gratuits",
+    "behaviour_how": "Utilise les voix intégrées de CapCut ou TikTok et ne paie un abonnement que si c'est indispensable.",
+    "objection": "Encore un abonnement mensuel de plus",
+    "habit": "tu publies trois Reels ou TikTok par semaine pour ta page"
+  },
+  {
+    "id": "P010",
+    "name": "Finn",
+    "age": 29,
+    "segment": "Petite entreprise ou boutique en ligne qui fait ses propres pubs et vidéos",
+    "income": 69000,
+    "behaviour": "Exigeant sur l'accent",
+    "behaviour_how": "Rejette toute voix qui sonne français de France ou robotique ; son public est québécois.",
+    "objection": "Encore un abonnement mensuel de plus",
+    "habit": "tu fais des pubs Facebook pour ta boutique Shopify"
+  },
+  {
+    "id": "P011",
+    "name": "Aria",
+    "age": 37,
+    "segment": "Créateur établi qui vit en partie de ses contenus",
+    "income": 57000,
+    "behaviour": "Utilisateur des outils gratuits",
+    "behaviour_how": "Utilise les voix intégrées de CapCut ou TikTok et ne paie un abonnement que si c'est indispensable.",
+    "objection": "Les voix de CapCut et TikTok sont gratuites et suffisent",
+    "habit": "tu fais des pubs Facebook pour ta boutique Shopify"
+  },
+  {
+    "id": "P012",
+    "name": "Olivia",
+    "age": 26,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 22000,
+    "behaviour": "Pressé par la production",
+    "behaviour_how": "Publie tous les jours, achète tout ce qui raccourcit le montage, sans trop comparer.",
+    "objection": "Encore un abonnement mensuel de plus",
+    "habit": "tu publies trois Reels ou TikTok par semaine pour ta page"
+  },
+  {
+    "id": "P013",
+    "name": "Rosa",
+    "age": 24,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 55000,
+    "behaviour": "Utilisateur des outils gratuits",
+    "behaviour_how": "Utilise les voix intégrées de CapCut ou TikTok et ne paie un abonnement que si c'est indispensable.",
+    "objection": "Je ne connais pas cette entreprise, est-ce qu'elle sera encore là dans six mois ?",
+    "habit": "tu as déjà essayé ElevenLabs en version gratuite"
+  },
+  {
+    "id": "P014",
+    "name": "Kenji",
+    "age": 19,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 31000,
+    "behaviour": "Collectionneur d'outils IA",
+    "behaviour_how": "Teste chaque nouvel outil IA vu sur TikTok ou YouTube, garde ceux qui font gagner du temps.",
+    "objection": "Est-ce que j'ai vraiment le droit d'utiliser ces voix pour du contenu commercial ou commandité ?",
+    "habit": "tu fais un podcast mensuel avec un ami"
+  },
+  {
+    "id": "P015",
+    "name": "Sam",
+    "age": 22,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 51000,
+    "behaviour": "Déjà abonné à ElevenLabs",
+    "behaviour_how": "Paie ElevenLabs depuis des mois et a ses voix et ses habitudes là-bas.",
+    "objection": "Je ne connais pas cette entreprise, est-ce qu'elle sera encore là dans six mois ?",
+    "habit": "tu as déjà essayé ElevenLabs en version gratuite"
+  },
+  {
+    "id": "P016",
+    "name": "Talia",
+    "age": 29,
+    "segment": "Pigiste ou petite agence qui produit pour des clients",
+    "income": 67000,
+    "behaviour": "Pressé par la production",
+    "behaviour_how": "Publie tous les jours, achète tout ce qui raccourcit le montage, sans trop comparer.",
+    "objection": "Encore un abonnement mensuel de plus",
+    "habit": "tu montes tes vidéos le soir sur ton téléphone avec CapCut"
+  },
+  {
+    "id": "P017",
+    "name": "Esme",
+    "age": 39,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 24000,
+    "behaviour": "Exigeant sur l'accent",
+    "behaviour_how": "Rejette toute voix qui sonne français de France ou robotique ; son public est québécois.",
+    "objection": "Une voix IA en français sonne encore robotique ou trop française de France",
+    "habit": "tu paies déjà Canva Pro et ChatGPT Plus chaque mois"
+  },
+  {
+    "id": "P018",
+    "name": "Lucia",
+    "age": 19,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 46000,
+    "behaviour": "Pressé par la production",
+    "behaviour_how": "Publie tous les jours, achète tout ce qui raccourcit le montage, sans trop comparer.",
+    "objection": "Encore un abonnement mensuel de plus",
+    "habit": "tu fais des pubs Facebook pour ta boutique Shopify"
+  },
+  {
+    "id": "P019",
+    "name": "Clara",
+    "age": 20,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 49000,
+    "behaviour": "Exigeant sur l'accent",
+    "behaviour_how": "Rejette toute voix qui sonne français de France ou robotique ; son public est québécois.",
+    "objection": "ElevenLabs est la référence et coûte à peu près pareil",
+    "habit": "tu paies déjà Canva Pro et ChatGPT Plus chaque mois"
+  },
+  {
+    "id": "P020",
+    "name": "Kira",
+    "age": 34,
+    "segment": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)",
+    "income": 45000,
+    "behaviour": "Utilisateur des outils gratuits",
+    "behaviour_how": "Utilise les voix intégrées de CapCut ou TikTok et ne paie un abonnement que si c'est indispensable.",
+    "objection": "Le clonage de voix n'est pas encore disponible, je paierais pour une promesse",
+    "habit": "tu as déjà essayé ElevenLabs en version gratuite"
+  }
+]

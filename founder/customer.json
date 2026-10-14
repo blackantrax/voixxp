@@ -1,0 +1,38 @@
+{
+  "business": "VoixXP, studio de voix IA en français (synthèse vocale et clonage de voix) pour créateurs de contenu",
+  "target": "Créateurs de contenu francophones (surtout au Québec) de 18 à 45 ans qui publient des vidéos courtes, des podcasts ou des pubs au moins une fois par semaine et ont besoin de voix off",
+  "where": "Québec et reste du Canada francophone, achat en ligne par carte en dollars canadiens",
+  "age": [18, 45],
+  "segments": [
+    {"name": "Créateur débutant ou à temps partiel (moins de 10 000 abonnés)", "share": 0.45, "income": [22000, 55000]},
+    {"name": "Créateur établi qui vit en partie de ses contenus", "share": 0.25, "income": [45000, 95000]},
+    {"name": "Petite entreprise ou boutique en ligne qui fait ses propres pubs et vidéos", "share": 0.20, "income": [50000, 130000]},
+    {"name": "Pigiste ou petite agence qui produit pour des clients", "share": 0.10, "income": [55000, 140000]}
+  ],
+  "behaviours": [
+    {"name": "Utilisateur des outils gratuits", "share": 0.25, "how": "Utilise les voix intégrées de CapCut ou TikTok et ne paie un abonnement que si c'est indispensable."},
+    {"name": "Déjà abonné à ElevenLabs", "share": 0.15, "how": "Paie ElevenLabs depuis des mois et a ses voix et ses habitudes là-bas."},
+    {"name": "Collectionneur d'outils IA", "share": 0.15, "how": "Teste chaque nouvel outil IA vu sur TikTok ou YouTube, garde ceux qui font gagner du temps."},
+    {"name": "Exigeant sur l'accent", "share": 0.15, "how": "Rejette toute voix qui sonne français de France ou robotique ; son public est québécois."},
+    {"name": "Chasseur de rabais", "share": 0.10, "how": "Compare les prix, cherche les offres à vie et les codes promo, déteste les abonnements de plus."},
+    {"name": "Lit les avis avant d'acheter", "share": 0.10, "how": "Cherche des avis, des démos et des comparaisons sur YouTube ou Reddit avant de payer."},
+    {"name": "Pressé par la production", "share": 0.10, "how": "Publie tous les jours, achète tout ce qui raccourcit le montage, sans trop comparer."}
+  ],
+  "objections": [
+    "Les voix de CapCut et TikTok sont gratuites et suffisent",
+    "ElevenLabs est la référence et coûte à peu près pareil",
+    "Le clonage de voix n'est pas encore disponible, je paierais pour une promesse",
+    "Une voix IA en français sonne encore robotique ou trop française de France",
+    "Encore un abonnement mensuel de plus",
+    "Je ne connais pas cette entreprise, est-ce qu'elle sera encore là dans six mois ?",
+    "Est-ce que j'ai vraiment le droit d'utiliser ces voix pour du contenu commercial ou commandité ?"
+  ],
+  "habits": [
+    "tu montes tes vidéos le soir sur ton téléphone avec CapCut",
+    "tu publies trois Reels ou TikTok par semaine pour ta page",
+    "tu fais un podcast mensuel avec un ami",
+    "tu fais des pubs Facebook pour ta boutique Shopify",
+    "tu paies déjà Canva Pro et ChatGPT Plus chaque mois",
+    "tu as déjà essayé ElevenLabs en version gratuite"
+  ]
+}

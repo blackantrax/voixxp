@@ -1,0 +1,13 @@
+{
+  "id": "P017",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "quality",
+  "reason": "Les voix québécoises ne sont pas encore là, et le clonage non plus, donc je paierais pour une promesse. Mon public est québécois, une voix qui sonne France ou robot, ça me coûte des abonnés. Je vais peut-être essayer le gratuit, mais je ne sors pas ma carte.",
+  "objection": "Les voix en français sont probablement de France et robotiques, et ce que j'achèterais (clonage, accent d'ici) n'existe pas encore.",
+  "would_change_my_mind": "Entendre une vraie voix québécoise naturelle dans le gratuit, qui passe auprès de mon public, et le clonage de ma voix déjà ouvert.",
+  "price_too_cheap": 3,
+  "price_cheap": 6,
+  "price_expensive": 12,
+  "price_too_expensive": 20
+}

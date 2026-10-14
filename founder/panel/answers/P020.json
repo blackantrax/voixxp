@@ -1,0 +1,13 @@
+{
+  "id": "P020",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Le gratuit me suffit pour mes voix off, et le clonage, la seule raison de payer, n'existe pas encore. Je ne paie pas d'avance pour une promesse, surtout sans voix québécoises.",
+  "objection": "Je paierais pour quelque chose qui n'est pas ouvert. Pas de clonage, pas de voix québécoises, donc rien de plus que ce que j'ai déjà gratuitement avec CapCut.",
+  "would_change_my_mind": "Que le clonage soit ouvert et que je puisse l'essayer avec ma voix, avec des voix québécoises, avant de payer.",
+  "price_too_cheap": 2,
+  "price_cheap": 5,
+  "price_expensive": 10,
+  "price_too_expensive": 16
+}
