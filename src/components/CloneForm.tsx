@@ -1,8 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2, Mic, Square, Upload } from "lucide-react";
 import { WaitlistForm } from "./WaitlistForm";
+
+const LANGS = { french: "Français", english: "Anglais", spanish: "Espagnol", german: "Allemand", italian: "Italien", portuguese: "Portugais", dutch: "Néerlandais" };
+const PLAN_LABEL: Record<string, string> = { essai: "Essai gratuit", createur: "Forfait Créateur", studio: "Forfait Studio" };
+type Allowance = { enabled: boolean; signedIn?: boolean; plan?: string; remaining?: number; quota?: number };
 
 export function CloneForm() {
   const [file, setFile] = useState<Blob | null>(null);
@@ -10,10 +14,17 @@ export function CloneForm() {
   const [recording, setRecording] = useState(false);
   const [text, setText] = useState("Salut, c'est moi ! Cette voix a été clonée avec VoixXP en quelques secondes.");
   const [consent, setConsent] = useState(false);
-  const [state, setState] = useState<"idle" | "busy" | "early" | "err">("idle");
+  const [lang, setLang] = useState("french");
+  const [sampleLang, setSampleLang] = useState("french");
+  const [allowance, setAllowance] = useState<Allowance | null>(null);
+  const [state, setState] = useState<"idle" | "busy" | "early" | "login" | "quota" | "err">("idle");
   const [message, setMessage] = useState("");
   const [result, setResult] = useState<string | null>(null);
   const recorder = useRef<MediaRecorder | null>(null);
+
+  useEffect(() => {
+    fetch("/api/clone").then((r) => r.json()).then(setAllowance).catch(() => {});
+  }, []);
 
   function setSample(b: Blob) {
     if (fileUrl) URL.revokeObjectURL(fileUrl);
@@ -50,14 +61,19 @@ export function CloneForm() {
     fd.set("text", text);
     fd.set("reference_audio", file);
     fd.set("consent", consent ? "oui" : "non");
+    fd.set("lang", lang);
+    fd.set("sample_lang", sampleLang);
     const res = await fetch("/api/clone", { method: "POST", body: fd }).catch(() => null);
     if (res?.ok) {
+      const left = Number(res.headers.get("X-Clone-Remaining"));
+      if (allowance && Number.isFinite(left)) setAllowance({ ...allowance, remaining: left });
       setResult(URL.createObjectURL(await res.blob()));
       setState("idle");
       return;
     }
     const data = await res?.json().catch(() => null);
     if (data?.error === "early_access") { setState("early"); return; }
+    if (data?.error === "login" || data?.error === "quota") { setState(data.error); setMessage(data.message); return; }
     setState("err");
     setMessage(data?.error ?? "Erreur réseau.");
   }
@@ -84,6 +100,21 @@ export function CloneForm() {
         <textarea id="clone-text" className="field min-h-[100px]" maxLength={1000} value={text} onChange={(e) => setText(e.target.value)} />
       </div>
 
+      <div className="grid gap-3 sm:grid-cols-2">
+        <label className="text-sm text-zinc-300">
+          Langue de l&apos;échantillon
+          <select className="field mt-1" value={sampleLang} onChange={(e) => setSampleLang(e.target.value)}>
+            {Object.entries(LANGS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+          </select>
+        </label>
+        <label className="text-sm text-zinc-300">
+          Langue du texte à lire
+          <select className="field mt-1" value={lang} onChange={(e) => setLang(e.target.value)}>
+            {Object.entries(LANGS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+          </select>
+        </label>
+      </div>
+
       <label className="flex items-start gap-3 text-sm text-zinc-300">
         <input type="checkbox" className="mt-1 accent-brand-500" checked={consent} onChange={(e) => setConsent(e.target.checked)} required />
         <span>Je confirme que cette voix est la mienne, ou que j&apos;ai le consentement écrit de la personne. Le clonage de la voix d&apos;autrui sans accord est interdit.</span>
@@ -93,7 +124,28 @@ export function CloneForm() {
         {state === "busy" && <Loader2 className="h-4 w-4 animate-spin" />} Cloner et générer
       </button>
 
-      {result && <audio src={result} controls autoPlay className="w-full" />}
+      {allowance?.enabled && allowance.signedIn && allowance.plan && (
+        <p className="text-center text-xs text-zinc-400">
+          {PLAN_LABEL[allowance.plan]} : {(allowance.remaining ?? 0).toLocaleString("fr-CA")} caractères restants
+          {allowance.plan === "essai" ? " (essai unique)" : " ce mois-ci"}.
+        </p>
+      )}
+      {allowance?.enabled && allowance.signedIn === false && (
+        <p className="text-center text-xs text-zinc-400"><a href="/connexion" className="underline">Connectez-vous</a> pour essayer gratuitement ({300} caractères offerts).</p>
+      )}
+
+      {result && (
+        <div className="space-y-2">
+          <audio src={result} controls autoPlay className="w-full" />
+          <a href={result} download="voixxp-clone.wav" className="btn-ghost w-full">Télécharger en WAV</a>
+        </div>
+      )}
+      {(state === "login" || state === "quota") && (
+        <div className="space-y-3 rounded-xl border border-brand-400/30 bg-brand-500/10 p-4 text-sm">
+          <p>{message}</p>
+          <a href={state === "login" ? "/connexion" : "/#tarifs"} className="btn-primary w-full">{state === "login" ? "Me connecter" : "Voir les forfaits"}</a>
+        </div>
+      )}
       {state === "err" && <p className="rounded-xl bg-red-500/10 p-3 text-sm text-red-300">{message}</p>}
       {state === "early" && (
         <div className="space-y-3 rounded-xl border border-brand-400/30 bg-brand-500/10 p-4">

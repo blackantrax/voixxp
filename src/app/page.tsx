@@ -1,3 +1,4 @@
+import { cloneEnabled } from "@/lib/clone";
 import Link from "next/link";
 import { Check, Clapperboard, Globe2, Infinity as InfinityIcon, Lock, Mic2, Podcast, Megaphone, Zap, X } from "lucide-react";
 import { LANGS, VOICES } from "@/lib/voices";
@@ -201,7 +202,7 @@ export default function Home({ searchParams }: { searchParams?: { paiement?: str
                   <Link href="/studio" className="btn-ghost w-full">{p.cta}</Link>
                 ) : (
                   <>
-                    <p className="mb-2 text-xs text-zinc-500">Prix fondateur garanti à vie pour les 100 premiers membres. Le clonage ouvre en accès anticipé, membres en priorité. Résiliable en tout temps.</p>
+                    <p className="mb-2 text-xs text-zinc-500">Prix fondateur garanti à vie pour les 100 premiers membres. {cloneEnabled() ? "Clonage ouvert : essayez-le gratuitement avant de payer." : "Le clonage ouvre en accès anticipé, membres en priorité."} Résiliable en tout temps.</p>
                     <form action="/api/stripe/checkout" method="post">
                       <input type="hidden" name="plan" value={p.id} />
                       <button className={p.featured ? "btn-primary w-full" : "btn-ghost w-full"}>Devenir membre fondateur</button>

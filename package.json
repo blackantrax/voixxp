@@ -15,6 +15,7 @@
     "node": ">=18.17.0"
   },
   "dependencies": {
+    "@fal-ai/client": "1.10.1",
     "@mintplex-labs/piper-tts-web": "^1.0.5",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.45.4",

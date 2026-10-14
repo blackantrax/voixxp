@@ -28,7 +28,7 @@ npm run dev
 | Variable | Rôle |
 | --- | --- |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Enregistre la liste d'attente dans la table `voixxp_waitlist (email text unique, plan text, created_at timestamptz default now())`. Sans elles, les inscriptions sont écrites dans les journaux Vercel. |
-| `CLONE_API_URL`, `CLONE_API_KEY` | Serveur de clonage. Contrat : `POST` multipart `{ text, reference_audio }` → `audio/wav`. Sans elles, `/clonage` affiche l'accès anticipé. |
+| `FAL_KEY` | Clonage de voix (Chatterbox multilingue sur les GPU de fal.ai, 0,025 $ US / 1 000 caractères). Quotas : essai 300 caractères, Créateur 100 000/mois, Studio 500 000/mois (table `clone_usage`). Sans elle, `/clonage` affiche l'accès anticipé. |
 
 ## Licences des voix
 
